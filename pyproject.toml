@@ -1,0 +1,39 @@
+[build-system]
+# Pinned below 1.28 deliberately. From 1.28 hatchling emits `Metadata-Version: 2.5`, which current
+# twine rejects outright ("'2.5' is not a valid metadata version") so the package cannot be checked
+# or uploaded. 2.4 carries everything this package declares and is accepted everywhere. Revisit once
+# the publishing toolchain has caught up with 2.5.
+requires = ["hatchling<1.28"]
+build-backend = "hatchling.build"
+
+[project]
+name = "snapwonders-mcp"
+version = "0.1.1"
+description = "Local MCP server for snapWONDERS — lets an AI assistant hide, reveal, analyse and convert files that live on your own machine."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Kenneth Springer @ snapWONDERS", email = "kenneth@snapwonders.com" }]
+keywords = ["mcp", "model-context-protocol", "claude", "ai-agent", "steganography", "forensics", "media-analysis", "snapwonders", "vaultify"]
+
+# The official SDK does the API work; this package is the MCP surface over it. mcp is the
+# reference Python implementation of the Model Context Protocol (MIT).
+dependencies = [
+    "mcp>=1.2,<2.0",
+    "snapwonders>=0.1.2,<1.0",
+]
+
+[project.urls]
+Homepage = "https://snapwonders.com/developers#mcp"
+Documentation = "https://snapwonders.com/api"
+Repository = "https://github.com/snapWONDERS/snapWONDERS-MCP"
+Issues = "https://github.com/snapWONDERS/snapWONDERS-MCP/issues"
+
+[project.scripts]
+snapwonders-mcp = "snapwonders_mcp.server:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/snapwonders_mcp"]
