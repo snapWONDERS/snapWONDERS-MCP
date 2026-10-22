@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.snapwonders/mcp-local",
+  "title": "snapWONDERS MCP (local)",
+  "description": "Local snapWONDERS MCP: hide, reveal, analyse and convert files on your own machine",
+  "repository": {
+    "url": "https://github.com/snapWONDERS/snapWONDERS-MCP",
+    "source": "github"
+  },
+  "version": "0.1.3",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "snapwonders-mcp",
+      "version": "0.1.3",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "SNAPWONDERS_API_KEY",
+          "description": "Your snapWONDERS API key (see https://snapwonders.com/developers)",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string"
+        }
+      ]
+    }
+  ]
+}
